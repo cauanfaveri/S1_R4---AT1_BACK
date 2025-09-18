@@ -1,25 +1,20 @@
 const express = require('express');
 const app = express();
-const porta = 5100;
+const porta = 5200;
 
-app.get('/saudacao/:nome', (req, res) => {
-    try {
-        const nome = req.params.nome;
-        const hora = parseInt(req.query.hora);
-        let saudacao = '';
-
-        if (hora >= 4 && hora < 13) {
-            saudacao = 'Bom dia';
-        } 
-        if (hora >= 13 && hora < 18) {
-            saudacao = 'Boa tarde';
-        } 
-        if (hora >= 18 || hora < 3) {
-            saudacao = 'Boa noite';
-        }
-
-        res.status(200).send(`${saudacao}, ${nome}!`);
-    } catch (error) {
-        res.status(500).send('Erro: Falha no servidor.');
-    }
+app.get('/Imc', (req, res) => {
+    const {peso, altura} = req.query
+    const imc = peso / (altura * altura);
+    return imc;
 });
+
+if (imc< 18.5) {
+    console.log("Classificação: Abaixo do peso");
+  } else if (resultadoIMC >= 18.5 && resultadoIMC < 25) {
+    console.log("Classificação: Peso normal");
+  } else {
+    console.log("Classificação: Acima do peso");
+  }
+  app.listen(porta, () => {
+    console.log(`Exercício de soma na porta ${porta}`)
+  });
